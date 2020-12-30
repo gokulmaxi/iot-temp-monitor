@@ -14,7 +14,7 @@
 #define SS_PIN D4
 #define RST_PIN D3
 int response;
-int offset = 12.5;
+int offset = 6.5;
 // 'oled', 128x64px
 const unsigned char myBitmap [] PROGMEM = {
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
@@ -159,7 +159,7 @@ int post_http(String data1, String data2)
     display.println("OKAY");
     display.setCursor(25, 35);
     display.setTextSize(2);
-    display.print(httpCode);
+    display.print(payload);
     display.display();
 
     digitalWrite(LED_SUCCESS, HIGH);
@@ -255,7 +255,7 @@ void loop()
         Serial.print("Hold on");
         temp_amb = mlx.readAmbientTempF();
         temp_obj = mlx.readObjectTempF() + offset;
-        if (temp_obj > 95)
+        if (temp_obj > 102)
         {
           display.clearDisplay();
           display.setCursor(25, 15);
